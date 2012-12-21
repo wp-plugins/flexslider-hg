@@ -1,6 +1,6 @@
-=== FlexSlider for Developers ===
+=== Responsive Slider for Developers ===
 Contributors: halgatewood
-Donate link: http://halgatewood.com/FlexSlider-hg/
+Donate link: http://halgatewood.com/flexslider-hg/
 Tags: slider, rotator, FlexSlider, slides, features, call to actions
 Requires at least: 3
 Tested up to: 3.5
@@ -20,13 +20,13 @@ For the rotator itself it using the great WooThemes FlexSlider.
 
 The easiest way to add a placeholder is to put this in your functions.php
 
-`function set_FlexSlider_hg_rotators()
+`function set_flexslider_hg_rotators()
 {
 	$rotators = array();
 	$rotators['homepage'] = array( 'size' => 'homepage-rotator' );
 	return $rotators;
 }
-add_filter('FlexSlider_hg_rotators', 'set_FlexSlider_hg_rotators');`
+add_filter('flexslider_hg_rotators', 'set_flexslider_hg_rotators');`
 	
 The size of the rotator is set from your WordPress Image Size settings. You can set those with the following function (also in your functions.php file).
 
