@@ -50,13 +50,13 @@ Setup the FlexSlider options: (see options at http://www.woothemes.com/FlexSlide
 
 The easiest way to add a placeholder is to put this in your functions.php
 
-`function set_FlexSlider_hg_rotators()
+`function set_flexslider_hg_rotators()
 {
 	$rotators = array();
 	$rotators['homepage'] = array( 'size' => 'homepage-rotator' );
 	return $rotators;
 }
-add_filter('FlexSlider_hg_rotators', 'set_FlexSlider_hg_rotators');`
+add_filter('flexslider_hg_rotators', 'set_flexslider_hg_rotators');`
 	
 The size of the rotator is set from your WordPress Image Size settings. You can set those with the following function (also in your functions.php file).
 
