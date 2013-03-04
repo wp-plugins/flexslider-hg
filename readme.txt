@@ -39,7 +39,7 @@ Setup the FlexSlider options: see options at http://www.woothemes.com/FlexSlider
 
 To include the rotator in your theme add the following line to your template:
 
-`if(function_exists('show_flexslider_rotator')) echo show_flexslider_rotator( 'homepage' );`
+`if(function_exists('show_flexslider_rotator')) show_flexslider_rotator( 'homepage' );`
 
 == Installation ==
 
@@ -66,7 +66,7 @@ The size of the rotator is set from your WordPress Image Size settings. You can 
 
 To include the rotator in your theme add the following line to your template:
 
-`if(function_exists('show_flexslider_rotator')) echo show_flexslider_rotator( 'homepage' );`
+`if(function_exists('show_flexslider_rotator')) show_flexslider_rotator( 'homepage' );`
 
 
 == Screenshots ==
