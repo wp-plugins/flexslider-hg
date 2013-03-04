@@ -33,7 +33,7 @@ The size of the rotator is set from your WordPress Image Size settings. You can 
 `add_image_size( 'homepage-rotator', '550', '250', true );`
 
 
-Setup the FlexSlider options: (see options at http://www.woothemes.com/FlexSlider/)
+Setup the FlexSlider options: see options at http://www.woothemes.com/FlexSlider/
 
 `$rotators['homepage'] = array( 'size' => 'homepage-rotator', 'options' => "{slideshowSpeed: 7000, direction: 'vertical'}" );`
 
