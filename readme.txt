@@ -12,7 +12,7 @@ Add FlexSlider Rotator Placeholders to your themes which are easily updateable b
 
 == Description ==
 
-'THIS PLUGIN IS INTENDED FOR DEVELOPERS, SOME BASIC PHP KNOWLEDGE IS NEEDED'
+THIS PLUGIN IS INTENDED FOR DEVELOPERS, SOME BASIC PHP KNOWLEDGE IS NEEDED
 
 FlexSlider for Developers creates a new 'slides' custom post type with it's own section in the WordPress admin sidebar. It uses the standard WordPress user interface so your clients will know how to use it instantly. 
 
