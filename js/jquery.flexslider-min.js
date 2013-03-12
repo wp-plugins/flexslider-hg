@@ -38,18 +38,15 @@
  
  
 // SETUP THE ROTATOR
-if( flexslider_hg_rotators )
-{
-	jQuery(window).load(function() {
-	
-		for(r=0;r < flexslider_hg_rotators.length; r++)
-	 	{
-			if(!flexslider_hg_rotators[r].options) { flexslider_hg_rotators[r].options = {} } 	
-			jQuery('#flexslider_hg_' + flexslider_hg_rotators[r].slug ).flexslider( flexslider_hg_rotators[r].options ); 
-	 	}
- 	
- 	});
-}
- 
- 
+flexslider_hg_rotators = typeof(flexslider_hg_rotators) == 'undefined' ? new Array() : flexslider_hg_rotators;
 
+// LOOP ROTATORS
+jQuery(window).load(function() 
+{
+	for(r=0;r < flexslider_hg_rotators.length; r++)
+ 	{
+		if(!flexslider_hg_rotators[r].options) { flexslider_hg_rotators[r].options = {} } 	
+		jQuery('#flexslider_hg_' + flexslider_hg_rotators[r].slug ).flexslider( flexslider_hg_rotators[r].options ); 
+ 	}
+	
+});
