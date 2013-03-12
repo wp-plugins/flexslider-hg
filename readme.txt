@@ -90,6 +90,13 @@ You can also use the new shortcode [flexslider slug=homepage] to include the rot
 
 == Changelog ==
 
+= 1.1 =
+* Code cleanup and improvement in Javascript, PHP and CSS
+* Shortcode added [flexslider slug=homepage]
+* Default 'homepage' rotator added (can be removed, overwritten, updated)
+* Option to hide the text box on top of slides
+* Ability to change the Heading H2 tag in the slide box, SEO bonus!
+
 = 1.0 =
 * Initial load of the plugin.
 
