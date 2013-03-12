@@ -12,21 +12,21 @@ Add FlexSlider Rotator Placeholders to your themes which are easily updateable b
 
 == Description ==
 
-THIS PLUGIN IS INTENDED FOR DEVELOPERS, SOME BASIC PHP KNOWLEDGE IS NEEDED
+THIS IS INTENDED FOR DEVELOPERS, BASIC PHP KNOWLEDGE IS NEEDED
 
-FlexSlider for Developers creates a new 'slides' custom post type with it's own section in the WordPress admin sidebar. It uses the standard WordPress user interface so your clients will know how to use it instantly. 
+Flexslider for Developers creates a new 'slides' custom post type with it's own section in the WordPress admin sidebar. It uses the standard WordPress user interface so your clients will know how to use it instantly. 
 
-For the rotator itself it using the great WooThemes FlexSlider. 
+For the rotator itself it uses FlexSlider by WooThemes. 
 
-The easiest way to add a placeholder is to put this in your functions.php
+By default the plugin comes with a 'homepage' placeholder. You can add more or overwrite it by adding a function to the functions.php file found in your theme.
 
 `function set_flexslider_hg_rotators( $rotators = array() )
 {
-    $rotators['contact-us'] 	= array( 'size' => 'thumbnail' );
-    $rotators['gallery-page'] 	= array( 'size' => 'medium' );
-    $rotators['amenities'] 		= array( 'size' => 'your-custom-size' );
-    $rotators['homepage'] 		= array( 'size' => 'homepage-rotator' );
-    return $rotators;
+	$rotators['homepage'] 		= array( 'size' => 'homepage-rotator', 'heading_tag' => 'h1' );
+	$rotators['contactus']		= array( 'size' => 'thumbnail' );
+	$rotators['gallerypage'] 	= array( 'size' => 'medium', 'hide_slide_data' => true );
+	$rotators['amenities'] 		= array( 'size' => 'your-custom-size' );	
+	return $rotators;
 }
 add_filter('flexslider_hg_rotators', 'set_flexslider_hg_rotators');`
 	
@@ -39,9 +39,11 @@ Setup the FlexSlider options: see options at http://www.woothemes.com/FlexSlider
 
 `$rotators['homepage'] = array( 'size' => 'homepage-rotator', 'options' => "{slideshowSpeed: 7000, direction: 'vertical'}" );`
 
-To include the rotator in your theme add the following line to your template:
+To include the rotator in your theme include the 'slug' found from your function above ($rotators['homepage']) and add the following line to your template:
 
 `if(function_exists('show_flexslider_rotator')) echo show_flexslider_rotator( 'homepage' );`
+
+You can also use the new shortcode [flexslider slug=homepage] to include the rotator in certain posts, pages, widgets, etc.
 
 == Installation ==
 
@@ -52,15 +54,15 @@ To include the rotator in your theme add the following line to your template:
 1. You and your clients can then upload slides with images, H2 titles and post excerpts. Great for SEO
 
 
-The easiest way to add a placeholder is to put this in your functions.php
+By default the plugin comes with a 'homepage' placeholder. You can add more or overwrite it by adding a function to the functions.php file found in your theme.
 
 `function set_flexslider_hg_rotators( $rotators = array() )
 {
-    $rotators['contact-us'] 	= array( 'size' => 'thumbnail' );
-    $rotators['gallery-page'] 	= array( 'size' => 'medium' );
-    $rotators['amenities'] 		= array( 'size' => 'your-custom-size' );
-    $rotators['homepage'] 		= array( 'size' => 'homepage-rotator' );
-    return $rotators;
+	$rotators['homepage'] 		= array( 'size' => 'homepage-rotator', 'heading_tag' => 'h1' );
+	$rotators['contactus']		= array( 'size' => 'thumbnail' );
+	$rotators['gallerypage'] 	= array( 'size' => 'medium', 'hide_slide_data' => true );
+	$rotators['amenities'] 		= array( 'size' => 'your-custom-size' );	
+	return $rotators;
 }
 add_filter('flexslider_hg_rotators', 'set_flexslider_hg_rotators');`
 	
@@ -68,10 +70,16 @@ The size of the rotator is set from your WordPress Image Size settings. You can 
 
 `add_image_size( 'homepage-rotator', '550', '250', true );`
 
-To include the rotator in your theme add the following line to your template:
+
+Setup the FlexSlider options: see options at http://www.woothemes.com/FlexSlider/
+
+`$rotators['homepage'] = array( 'size' => 'homepage-rotator', 'options' => "{slideshowSpeed: 7000, direction: 'vertical'}" );`
+
+To include the rotator in your theme include the 'slug' found from your function above ($rotators['homepage']) and add the following line to your template:
 
 `if(function_exists('show_flexslider_rotator')) echo show_flexslider_rotator( 'homepage' );`
 
+You can also use the new shortcode [flexslider slug=homepage] to include the rotator in certain posts, pages, widgets, etc.
 
 == Screenshots ==
 
@@ -81,6 +89,13 @@ To include the rotator in your theme add the following line to your template:
 4. PHP function to create your FlexSlider placeholders.
 
 == Changelog ==
+
+= 1.1 =
+* Code cleanup and improvement in Javascript, PHP and CSS
+* Shortcode added [flexslider slug=homepage]
+* Default 'homepage' rotator added (can be removed, overwritten, updated)
+* Option to hide the text box on top of slides
+* Ability to change the Heading H2 tag in the slide box, SEO bonus!
 
 = 1.0 =
 * Initial load of the plugin.
