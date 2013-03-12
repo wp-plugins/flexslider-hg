@@ -40,9 +40,9 @@ html[xmlns] .flexslider-hg .slides {display: block;}
 .flexslider-hg {margin: 0 0 60px; background: #fff; border: 4px solid #fff; position: relative; -webkit-border-radius: 4px; -moz-border-radius: 4px; -o-border-radius: 4px; border-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,.2); -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.2); -moz-box-shadow: 0 1px 4px rgba(0,0,0,.2); -o-box-shadow: 0 1px 4px rgba(0,0,0,.2); zoom: 1;}
 .flex-viewport {max-height: 2000px; -webkit-transition: all 1s ease; -moz-transition: all 1s ease; transition: all 1s ease;}
 .loading .flex-viewport {max-height: 300px;}
-.flexslider-hg .slides {zoom: 1; margin-left: 0 !important; }
-.flexslider-hg .slides li { margin-left: 0 !important; }
-.flexslider-hg .slides li img { max-width: 100%; height: auto; }
+.flexslider-hg ul.slides {zoom: 1; margin-left: 0 !important; margin-bottom: 0; list-style: none; }
+.flexslider-hg ul.slides li { margin-left: 0 !important; display: block; }
+.flexslider-hg ul.slides li img { max-width: 100%; height: auto; }
 .carousel li {margin-right: 5px}
 
 
@@ -53,7 +53,7 @@ html[xmlns] .flexslider-hg .slides {display: block;}
 
 
 /* Direction Nav */
-.flexslider-hg .flex-direction-nav {*height: 0;}
+.flexslider-hg .flex-direction-nav {*height: 0; margin: 0; padding: 0; line-height: 0; list-style: none; }
 .flexslider-hg .flex-direction-nav a { padding: 0 !important; width: 30px; height: 30px; margin: -20px 0 0; display: block; background: url(../images/bg_direction_nav.png) no-repeat 0 0; position: absolute; top: 50%; cursor: pointer; text-indent: -9999px; opacity: 0; -webkit-transition: all .3s ease; -moz-transition: all .3s ease; -o-transition: all .3s ease; -ms-transition: all .3s ease; transition: all .3s ease; }
 .flexslider-hg .flex-direction-nav .flex-next {background-position: 100% 0; right: -36px; }
 .flexslider-hg .flex-direction-nav .flex-prev {left: -36px;}
@@ -61,10 +61,11 @@ html[xmlns] .flexslider-hg .slides {display: block;}
 .flexslider-hg:hover .flex-prev {opacity: 0.8; left: 15px;}
 .flexslider-hg:hover .flex-next:hover, .flexslider-hg:hover .flex-prev:hover {opacity: 1;}
 .flexslider-hg .flex-direction-nav .flex-disabled {opacity: .3!important; filter:alpha(opacity=30); cursor: default;}
+.flexslider-hg .flex-direction-nav li { margin: 0; padding: 0; display: block; }
 
 /* Control Nav */
 .flexslider-hg .flex-control-nav {width: 100%; position: absolute; bottom: -40px; text-align: center; margin: 0 !important; }
-.flexslider-hg .flex-control-nav li {margin: 0 6px; display: inline-block; zoom: 1; *display: inline;}
+.flexslider-hg .flex-control-nav li {margin: 0 6px; display: inline-block; zoom: 1; *display: inline; list-style: none; }
 .flexslider-hg .flex-control-paging li a {width: 11px; height: 11px; display: block; background: #666; background: rgba(0,0,0,0.5); cursor: pointer; text-indent: -9999px; -webkit-border-radius: 20px; -moz-border-radius: 20px; -o-border-radius: 20px; border-radius: 20px; box-shadow: inset 0 0 3px rgba(0,0,0,0.3);}
 .flexslider-hg .flex-control-paging li a:hover { background: #333; background: rgba(0,0,0,0.7); }
 .flexslider-hg .flex-control-paging li a.flex-active { background: #000; background: rgba(0,0,0,0.9); cursor: default; }
