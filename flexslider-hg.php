@@ -3,7 +3,7 @@
  * Plugin Name: Responsive Slider for Developers
  * Plugin URI: http://halgatewood.com/flexslider-hg
  * Description: An admin interface that uses WooThemes Flexslider on the frontend. Designed for developers to easily add image rotators that their clients can easily maintain.
- * Version: 1.1.1
+ * Version: 1.1.2
  * Author: Hal Gatewood
  * Author URI: http://halgatewood.com
  
@@ -148,7 +148,7 @@ function show_flexslider_rotator( $slug )
 				
 				$rtn .= '</' . $header_type . '>';
 				
-				$rtn .= get_the_content();
+				$rtn .= get_the_excerpt();
 				$rtn .= '</div>';
 			
 			endif;
