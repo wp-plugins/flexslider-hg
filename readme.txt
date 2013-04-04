@@ -90,6 +90,9 @@ You can also use the new shortcode [flexslider slug=homepage] to include the rot
 
 == Changelog ==
 
+= 1.1.3 =
+* Added orderby and order parameters that can be passed
+
 = 1.1 =
 * Code cleanup and improvement in Javascript, PHP and CSS
 * Shortcode added [flexslider slug=homepage]
