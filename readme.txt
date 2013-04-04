@@ -23,7 +23,7 @@ By default the plugin comes with a 'homepage' placeholder. You can add more or o
 `function set_flexslider_hg_rotators( $rotators = array() )
 {
 	$rotators['homepage'] 		= array( 'size' => 'homepage-rotator', 'heading_tag' => 'h1' );
-	$rotators['contactus']		= array( 'size' => 'thumbnail' );
+	$rotators['contactus']		= array( 'size' => 'thumbnail', 'orderby' => 'title', 'order' => 'DESC' );
 	$rotators['gallerypage'] 	= array( 'size' => 'medium', 'hide_slide_data' => true );
 	$rotators['amenities'] 		= array( 'size' => 'your-custom-size' );	
 	return $rotators;
@@ -59,7 +59,7 @@ By default the plugin comes with a 'homepage' placeholder. You can add more or o
 `function set_flexslider_hg_rotators( $rotators = array() )
 {
 	$rotators['homepage'] 		= array( 'size' => 'homepage-rotator', 'heading_tag' => 'h1' );
-	$rotators['contactus']		= array( 'size' => 'thumbnail' );
+	$rotators['contactus']		= array( 'size' => 'thumbnail', 'orderby' => 'title', 'order' => 'DESC' );
 	$rotators['gallerypage'] 	= array( 'size' => 'medium', 'hide_slide_data' => true );
 	$rotators['amenities'] 		= array( 'size' => 'your-custom-size' );	
 	return $rotators;
@@ -81,6 +81,7 @@ To include the rotator in your theme include the 'slug' found from your function
 
 You can also use the new shortcode [flexslider slug=homepage] to include the rotator in certain posts, pages, widgets, etc.
 
+
 == Screenshots ==
 
 1. List view of the slides, custom columns used for quick viewing and editing
@@ -88,7 +89,7 @@ You can also use the new shortcode [flexslider slug=homepage] to include the rot
 3. Included default FlexSlider template included, can be modified with CSS
 4. PHP function to create your FlexSlider placeholders.
 
-== Changelog ==
+== Changelog =
 
 = 1.1.3 =
 * Added orderby and order parameters that can be passed
