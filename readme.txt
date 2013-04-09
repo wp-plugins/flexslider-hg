@@ -3,7 +3,7 @@ Contributors: halgatewood
 Donate link: http://halgatewood.com/flexslider-hg/
 Tags: slider, rotator, FlexSlider, slides, features, call to actions
 Requires at least: 3
-Tested up to: 3.5
+Tested up to: 3.6
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -18,7 +18,7 @@ Flexslider for Developers creates a new 'slides' custom post type with it's own 
 
 For the rotator itself it uses FlexSlider by WooThemes. 
 
-By default the plugin comes with a 'homepage' placeholder. You can add more or overwrite it by adding a function to the functions.php file found in your theme.
+By default the plugin comes with a 'homepage' placeholder. You can add more or overwrite it by adding a function to the functions.php file found in your theme. It is designed this way to keep clients greasy fingers from changing the settings.
 
 `function set_flexslider_hg_rotators( $rotators = array() )
 {
