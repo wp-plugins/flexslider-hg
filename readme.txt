@@ -91,6 +91,9 @@ You can also use the new shortcode [flexslider slug=homepage] to include the rot
 
 == Changelog =
 
+= 1.1.4 =
+* Added posts_per_page = -1 to grab all slides for a rotator
+
 = 1.1.3 =
 * Added orderby and order parameters that can be passed
 
