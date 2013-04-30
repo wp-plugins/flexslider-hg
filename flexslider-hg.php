@@ -3,14 +3,14 @@
  * Plugin Name: Responsive Slider for Developers
  * Plugin URI: http://halgatewood.com/flexslider-hg
  * Description: An admin interface that uses WooThemes Flexslider on the frontend. Designed for developers to easily add image rotators that their clients can easily maintain.
- * Version: 1.1.4
+ * Version: 1.2
  * Author: Hal Gatewood
  * Author URI: http://halgatewood.com
  
  
  	Based off DevPress's Responsive Slider and using WooThemes Flexslider. 
  	
- 	http://wordpress.org/extend/plugins/flexslider_hg/
+ 	http://wordpress.org/extend/plugins/responsive-slider/
  	http://www.woothemes.com/flexslider/
  	
  	SIMPLE USAGE:
@@ -35,7 +35,6 @@ define( 'FLEXSLIDER_HG_URI', trailingslashit( plugin_dir_url( __FILE__ ) ) );
 function flexslider_hg_rotators()
 {
 	// GET ROTATORS: TO SETUP ADDITIONAL ROTATORS SEE DOCS AT http://halgatewood.com/flexslider-hg
-
 	$rotators = array();
 	$rotators['homepage'] = array( 'size' => 'large' );
 	return apply_filters( 'flexslider_hg_rotators', $rotators );
@@ -46,6 +45,7 @@ function flexslider_hg_setup()
 {
 	add_action( 'init', 'flexslider_hg_setup_init' );
 	add_action( 'admin_head', 'flexslider_hg_admin_icon' );	
+	add_action( 'wp_enqueue_scripts', 'flexslider_wp_enqueue' );	
 
 	add_action( 'add_meta_boxes', 'flexslider_hg_create_slide_metaboxes' );
 	add_action( 'save_post', 'flexslider_hg_save_meta', 1, 2 );
@@ -54,8 +54,8 @@ function flexslider_hg_setup()
 	add_action( 'manage_slides_posts_custom_column', 'flexslider_hg_add_columns' );
 	
 	add_shortcode('flexslider', 'flexslider_hg_shortcode');
-	add_action('the_posts', 'flexslider_has_shortcode');
 }
+
 
 /* INIT */
 function flexslider_hg_setup_init()
@@ -81,6 +81,15 @@ function flexslider_hg_setup_init()
 	);
 	register_post_type( 'slides', $args );
 }
+
+
+// FRONTEND: heading
+function flexslider_wp_enqueue()
+{
+	wp_enqueue_script( 'flexslider', FLEXSLIDER_HG_URI . 'js/jquery.flexslider-min.js', array( 'jquery' ) );
+	wp_enqueue_style( 'flexslider', FLEXSLIDER_HG_URI . 'css/flexslider.css' );
+}
+
 
 // ADMIN: WIDGET ICONS
 function flexslider_hg_admin_icon()
@@ -115,10 +124,7 @@ function show_flexslider_rotator( $slug )
 	query_posts( array( 'post_type' => 'slides', 'order' => $order, 'orderby' => $orderby, 'meta_key' => '_slider_id', 'meta_value' => $slug, 'posts_per_page' => -1 ) );
 	
 	if ( have_posts() ) :
-	
-		wp_enqueue_script( 'flexslider', FLEXSLIDER_HG_URI . 'js/jquery.flexslider-min.js', array('jquery'), false, true );
-		wp_enqueue_style( 'flexslider', FLEXSLIDER_HG_URI . 'css/flexslider.css' );
-	
+
 		$rtn .= '<div id="flexslider_hg_' . $slug . '_wrapper" class="flexslider-hg-wrapper">';
 		$rtn .= '<div id="flexslider_hg_' . $slug . '" class="flexslider_hg_' . $slug . ' flexslider flexslider-hg">';
 		$rtn .= '<ul class="slides">';
@@ -169,18 +175,15 @@ function show_flexslider_rotator( $slug )
 		// PUSH THE ROTATOR INTO array OF ROTATORS (flexslider_hg_rotators) WE'LL PICK IT UP IN THE FOOTER JS
 		$rtn .= '<script>';
 		
-		$rtn .= 'var flexslider_' . $slug . ' = new Object();';
-		$rtn .= 'flexslider_' . $slug . '.slug = \'' . $slug . '\';';
-		
+		$rtn .= " jQuery('#flexslider_hg_{$slug}').flexslider( ";
+			
 		if(isset($rotators[ $slug ]['options']) AND $rotators[ $slug ]['options'] != "") 
 		{ 
-			$rtn .= 'flexslider_' . $slug . '.options = ' . $rotators[ $slug ]['options'] . ';';
+			$rtn .= $rotators[ $slug ]['options'];
 		}
+				
+		$rtn .= " ); ";
 		
-		$rtn .= 'flexslider_hg_rotators = typeof(flexslider_hg_rotators) == \'undefined\' ? new Array() : flexslider_hg_rotators;';
-		
-		//$rtn .= 'if(!flexslider_hg_rotators instanceof Array) { var flexslider_hg_rotators = new Array(); }';
-		$rtn .= 'flexslider_hg_rotators.push(  flexslider_' . $slug . ' );';
 		$rtn .= '</script>';
 		
 	endif;
@@ -225,6 +228,7 @@ function flexslider_hg_metabox_1()
 	<?php 
 }
 
+
 /* SAVE THE EXTRA GOODS FROM THE SLIDE */
 function flexslider_hg_save_meta( $post_id, $post )
 {
@@ -238,8 +242,8 @@ function flexslider_hg_save_meta( $post_id, $post )
 	}
 }
 
-/* ADMIN COLUMNS */
 
+/* ADMIN COLUMNS */
 function flexslider_hg_columns( $columns ) 
 {
 	$columns = array(
@@ -255,6 +259,7 @@ function flexslider_hg_columns( $columns )
 	return $columns;
 }
 
+
 function flexslider_hg_add_columns( $column )
 {
 	global $post;
@@ -267,30 +272,10 @@ function flexslider_hg_add_columns( $column )
 }
 
 
-/* SHORTCODE SUPPORT */
-function flexslider_has_shortcode($posts)
-{
-    if ( empty($posts) ) return $posts;
- 
-    $found = false;
-    foreach ($posts as $post) 
-    {
-        if ( stripos($post->post_content, '[flexslider_hg') )  { $found = true; break; } 
-	}
- 
-    if($found)
-    {
-		wp_enqueue_script( 'flexslider', FLEXSLIDER_HG_URI . 'js/jquery.flexslider-min.js', array('jquery'), false, true );
-		wp_enqueue_style( 'flexslider', FLEXSLIDER_HG_URI . 'css/flexslider.css' );
-    }
-    return $posts;
-}
-
-
 function flexslider_hg_shortcode($atts, $content = null)
 {
 	$slug = isset($atts['slug']) ? $atts['slug'] : false;
-	if(!$slug) { return apply_filters( 'flexslider_hg_empty_shortcode', "<p>Flexslider: Please include a 'slug' parameter. [flexslider_hg slug=homepage]</p>" ); }
+	if(!$slug) { return apply_filters( 'flexslider_hg_empty_shortcode', "<p>Flexslider: Please include a 'slug' parameter. [flexslider slug=homepage]</p>" ); }
 	return show_flexslider_rotator( $slug );
 }
 

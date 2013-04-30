@@ -1,7 +1,7 @@
 === Responsive Slider for Developers ===
 Contributors: halgatewood
 Donate link: http://halgatewood.com/flexslider-hg/
-Tags: slider, rotator, FlexSlider, slides, features, call to actions
+Tags: slider, rotator, FlexSlider, slides, features, call to actions, slider shortcode, shortcode
 Requires at least: 3
 Tested up to: 3.6
 Stable tag: trunk
@@ -90,6 +90,10 @@ You can also use the new shortcode [flexslider slug=homepage] to include the rot
 4. PHP function to create your FlexSlider placeholders.
 
 == Changelog =
+
+= 1.2 =
+* Internet Explorer issues fixed
+* Code cleanup
 
 = 1.1.4 =
 * Added posts_per_page = -1 to grab all slides for a rotator
