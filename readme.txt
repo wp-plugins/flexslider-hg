@@ -45,8 +45,12 @@ To include the rotator in your theme include the 'slug' found from your function
 
 You can also use the new shortcode [flexslider slug=homepage] to include the rotator in certain posts, pages, widgets, etc.
 
-=== Gallery of Attachments===
+*Gallery of Attachments
 New in version 1.3: If you want to display the image attachments for a give post or page simply add the shortcode [flexslider] and it will automatically grab the images. You can click the standard 'Add Media' button above the WordPress Content Editor and then reorder the images to the order you want them to display.
+
+Help development of this plugin on GitHub - https://github.com/halgatewood/flexslider-hg
+
+
 
 == Installation ==
 
