@@ -18,7 +18,7 @@ Flexslider for Developers creates a new 'slides' custom post type with it's own 
 
 For the rotator itself it uses FlexSlider by WooThemes. 
 
-By default the plugin comes with a 'homepage' placeholder. You can add more or overwrite it by adding a function to the functions.php file found in your theme. It is designed this way to keep clients greasy fingers from changing the settings.
+By default the plugin comes with a 'homepage' and an 'attachment' placeholder. You can add more or overwrite it by adding a function to the functions.php file found in your theme. It is designed this way to keep clients greasy fingers from changing the settings.
 
 `function set_flexslider_hg_rotators( $rotators = array() )
 {
@@ -44,6 +44,9 @@ To include the rotator in your theme include the 'slug' found from your function
 `if(function_exists('show_flexslider_rotator')) echo show_flexslider_rotator( 'homepage' );`
 
 You can also use the new shortcode [flexslider slug=homepage] to include the rotator in certain posts, pages, widgets, etc.
+
+=== Gallery of Attachments===
+New in version 1.3: If you want to display the image attachments for a give post or page simply add the shortcode [flexslider] and it will automatically grab the images. You can click the standard 'Add Media' button above the WordPress Content Editor and then reorder the images to the order you want them to display.
 
 == Installation ==
 
