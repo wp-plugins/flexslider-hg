@@ -14,9 +14,8 @@ Add Flexslider Rotators to your themes that are easy to maintain by your clients
 
 = Note: In our next release (Version 1.4) we will be adding the ability to create the rotators in the admin. No PHP skills will be needed. Current version requires some PHP knowledge =
 
-Flexslider for Developers creates a new 'slides' custom post type with it's own section in the WordPress admin sidebar. It uses the standard WordPress user interface so your clients will know how to use it instantly. 
 
-For the rotator itself it uses FlexSlider by WooThemes. 
+Flexslider for Developers creates a new 'slides' custom post type with it's own section in the WordPress admin sidebar. It uses the standard WordPress user interface so your clients will know how to use it instantly. 
 
 By default the plugin comes with a 'homepage' and an 'attachment' placeholder. You can add more or overwrite it by adding a function to the functions.php file found in your theme. It is designed this way to keep clients greasy fingers from changing the settings.
 
@@ -30,15 +29,17 @@ By default the plugin comes with a 'homepage' and an 'attachment' placeholder. Y
 }
 add_filter('flexslider_hg_rotators', 'set_flexslider_hg_rotators');`
 	
+= Change Image Size =
 The size of the rotator is set from your WordPress Image Size settings. You can set those with the following function (also in your functions.php file).
 
 `add_image_size( 'homepage-rotator', '550', '250', true );`
 
+= FlexSlider by WooThemes, Rotator Options =
+For the rotator itself it uses FlexSlider by WooThemes. To setup custom options like making the rotator slide, you can add FlexSlider options. The below example shows how and all the options can be found at http://www.woothemes.com/FlexSlider/
 
-Setup the FlexSlider options: see options at http://www.woothemes.com/FlexSlider/
+`$rotators['homepage'] = array( 'size' => 'homepage-rotator', 'options' => "{slideshowSpeed: 7000, direction: 'vertical', animation: 'slide'}" );`
 
-`$rotators['homepage'] = array( 'size' => 'homepage-rotator', 'options' => "{slideshowSpeed: 7000, direction: 'vertical'}" );`
-
+= Adding the rotator to your site =
 To include the rotator in your theme include the 'slug' found from your function above ($rotators['homepage']) and add the following line to your template:
 
 `if(function_exists('show_flexslider_rotator')) echo show_flexslider_rotator( 'homepage' );`
