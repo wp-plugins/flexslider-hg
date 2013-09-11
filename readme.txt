@@ -25,7 +25,7 @@ By default the plugin comes with a 'homepage' placeholder. You can add more or o
 	$rotators['homepage'] 		= array( 'size' => 'homepage-rotator', 'heading_tag' => 'h1' );
 	$rotators['contactus']		= array( 'size' => 'thumbnail', 'orderby' => 'title', 'order' => 'DESC' );
 	$rotators['gallerypage'] 	= array( 'size' => 'medium', 'hide_slide_data' => true );
-	$rotators['amenities'] 		= array( 'size' => 'your-custom-size' );	
+	$rotators['amenities'] 		= array( 'size' => 'your-custom-size', 'limit' => 5 );	
 	return $rotators;
 }
 add_filter('flexslider_hg_rotators', 'set_flexslider_hg_rotators');`
@@ -61,7 +61,7 @@ By default the plugin comes with a 'homepage' placeholder. You can add more or o
 	$rotators['homepage'] 		= array( 'size' => 'homepage-rotator', 'heading_tag' => 'h1' );
 	$rotators['contactus']		= array( 'size' => 'thumbnail', 'orderby' => 'title', 'order' => 'DESC' );
 	$rotators['gallerypage'] 	= array( 'size' => 'medium', 'hide_slide_data' => true );
-	$rotators['amenities'] 		= array( 'size' => 'your-custom-size' );	
+	$rotators['amenities'] 		= array( 'size' => 'your-custom-size', 'limit' => 5 );	
 	return $rotators;
 }
 add_filter('flexslider_hg_rotators', 'set_flexslider_hg_rotators');`
@@ -90,6 +90,13 @@ You can also use the new shortcode [flexslider slug=homepage] to include the rot
 4. PHP function to create your FlexSlider placeholders.
 
 == Changelog =
+
+= 1.3 =
+* New default attachments rotator
+* If no slug is specified we grab the attachments
+* Only enqueue scripts and styles when shortcode is present, (WP 3.6+)
+* New limit attribute, set the number of slides to display
+* New filters for developers to hook into
 
 = 1.2 =
 * Internet Explorer issues fixed

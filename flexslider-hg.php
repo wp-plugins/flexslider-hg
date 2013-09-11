@@ -3,7 +3,7 @@
  * Plugin Name: Responsive Slider for Developers
  * Plugin URI: http://halgatewood.com/flexslider-hg
  * Description: An admin interface that uses WooThemes Flexslider on the frontend. Designed for developers to easily add image rotators that their clients can easily maintain.
- * Version: 1.2
+ * Version: 1.3
  * Author: Hal Gatewood
  * Author URI: http://halgatewood.com
  
@@ -20,7 +20,7 @@
 	    $rotators['homepage'] 		= array( 'size' => 'large', 'heading_tag' => 'h1' );
 	    $rotators['contactus'] 		= array( 'size' => 'thumbnail' );
 	    $rotators['gallerypage'] 	= array( 'size' => 'medium', 'hide_slide_data' => true );
-	    $rotators['amenities'] 		= array( 'size' => 'your-custom-size' );
+	    $rotators['amenities'] 		= array( 'size' => 'your-custom-size', 'limit' => 5 );
 	    return $rotators;
 	}
 	add_filter('flexslider_hg_rotators', 'set_flexslider_hg_rotators');
@@ -32,15 +32,19 @@
 add_action( 'plugins_loaded', 'flexslider_hg_setup' );
 define( 'FLEXSLIDER_HG_URI', trailingslashit( plugin_dir_url( __FILE__ ) ) );
 
+
+// GET ROTATORS:
+// TO SETUP ADDITIONAL ROTATORS SEE DOCS AT http://halgatewood.com/flexslider-hg
 function flexslider_hg_rotators()
 {
-	// GET ROTATORS: TO SETUP ADDITIONAL ROTATORS SEE DOCS AT http://halgatewood.com/flexslider-hg
 	$rotators = array();
-	$rotators['homepage'] = array( 'size' => 'large' );
+	$rotators['homepage'] 		= array( 'size' => 'large' );
+	$rotators['attachments'] 	= array( 'size' => 'large', 'hide_slide_data' => true );
 	return apply_filters( 'flexslider_hg_rotators', $rotators );
 }
 
 
+// SETUP ACTIONS
 function flexslider_hg_setup()
 {
 	add_action( 'init', 'flexslider_hg_setup_init' );
@@ -57,7 +61,7 @@ function flexslider_hg_setup()
 }
 
 
-/* INIT */
+// INIT
 function flexslider_hg_setup_init()
 {
 	// 'SLIDES' POST TYPE
@@ -70,7 +74,7 @@ function flexslider_hg_setup_init()
 		'_builtin'             => false,
 		'show_ui'              => true, 
 		'query_var'            => true,
-		'rewrite'              => array( "slug" => "slides" ),
+		'rewrite'              => apply_filters( 'flexslider_hg_post_type_rewite', array( "slug" => "slides" )),
 		'capability_type'      => 'post',
 		'hierarchical'         => false,
 		'menu_position'        => 26.6,
@@ -84,10 +88,27 @@ function flexslider_hg_setup_init()
 
 
 // FRONTEND: heading
-function flexslider_wp_enqueue()
+function flexslider_hg_do_scripts()
 {
 	wp_enqueue_script( 'flexslider', FLEXSLIDER_HG_URI . 'js/jquery.flexslider-min.js', array( 'jquery' ) );
 	wp_enqueue_style( 'flexslider', FLEXSLIDER_HG_URI . 'css/flexslider.css' );
+}
+
+function flexslider_wp_enqueue()
+{
+	global $post;
+	
+	if( function_exists('has_shortcode') )
+	{
+		if( has_shortcode( $post->post_content, 'flexslider')) 
+		{ 
+			flexslider_hg_do_scripts();
+		}
+	}
+	else
+	{
+		flexslider_hg_do_scripts();
+	}
 }
 
 
@@ -107,46 +128,75 @@ function flexslider_hg_admin_icon()
 }
 
 
-/* SHOW ROTATOR */
+// SHOW ROTATOR
 function show_flexslider_rotator( $slug )
 {
+	// GET ALL ROTATORS
 	$rotators = flexslider_hg_rotators();
+	
+	// SET IMAGE SIZE: size
 	$image_size = isset($rotators[ $slug ]['size']) ? $rotators[ $slug ]['size'] : 'large';
 
+	// HIDE SLIDE TEXT: hide_slide_data
 	$hide_slide_data = isset($rotators[ $slug ]['hide_slide_data']) ? true : false;
+	
+	// HEADING HTML ELEMENT: heading_tag
 	$header_type = isset($rotators[ $slug ]['heading_tag']) ? $rotators[ $slug ]['heading_tag'] : "h2";
 
+	// ORDER BY PARAMS: orderby, order, limit
 	$orderby = isset($rotators[ $slug ]['orderby']) ? $rotators[ $slug ]['orderby'] : "menu_order";
 	$order = isset($rotators[ $slug ]['order']) ? $rotators[ $slug ]['order'] : "ASC";
+	$limit = isset($rotators[ $slug ]['limit']) ? $rotators[ $slug ]['limit'] : "-1";
 
-	$rtn = "";
 
-	query_posts( array( 'post_type' => 'slides', 'order' => $order, 'orderby' => $orderby, 'meta_key' => '_slider_id', 'meta_value' => $slug, 'posts_per_page' => -1 ) );
+	// DEFAULT QUERY PARAMS
+	$query_args = array( 'post_type' => 'slides', 'order' => $order, 'orderby' => $orderby, 'meta_key' => '_slider_id', 'meta_value' => $slug, 'posts_per_page' => $limit );
+
 	
-	if ( have_posts() ) :
-
+	// IF ATTACHMENTS WE NEED THE POST PARENT
+	if( $slug == "attachments" )
+	{
+		$query_args['post_type'] = 'attachment';
+		$query_args['post_parent'] = get_the_ID();
+		$query_args['post_status'] = 'inherit';
+		$query_args['post_mime_type'] = 'image';
+		unset( $query_args['meta_value'] );
+		unset( $query_args['meta_key'] );
+	}
+	
+	$rtn = "";
+	
+	query_posts( apply_filters( 'flexslider_hg_query_post_args', $query_args) );
+	if ( have_posts() ) 
+	{
 		$rtn .= '<div id="flexslider_hg_' . $slug . '_wrapper" class="flexslider-hg-wrapper">';
 		$rtn .= '<div id="flexslider_hg_' . $slug . '" class="flexslider_hg_' . $slug . ' flexslider flexslider-hg">';
 		$rtn .= '<ul class="slides">';
 		
-		while ( have_posts() ) : the_post();
+		while ( have_posts() )
+		{
+			the_post();
 		
 			$url = get_post_meta( get_the_ID(), "_slide_link_url", true );
 			$a_tag_opening = '<a href="' . $url . '" title="' . the_title_attribute( array('echo' => false) ) . '" >';
 			
+			
 			$rtn .= '<li>';
 			$rtn .= '<div id="slide-' . get_the_ID() . '" class="slide">';
 			
-			if ( has_post_thumbnail() ) :
-			
+			if( $slug == "attachments" )
+			{
+				$rtn .= wp_get_attachment_image( get_the_ID(), $image_size );
+			}
+			else if ( has_post_thumbnail() )
+			{
 				if($url) { $rtn .= $a_tag_opening; }
 				$rtn .= get_the_post_thumbnail( get_the_ID(), $image_size , array( 'class' => 'slide-thumbnail' ) );
 				if($url) { $rtn .= '</a>'; }
-	
-			endif;
+			}
 			
-			if( !$hide_slide_data) :
-			
+			if( !$hide_slide_data)
+			{
 				$rtn .= '<div class="slide-data">';
 				
 				$rtn .= '<' . $header_type . ' class="slide-title flexslider-hg-title">';
@@ -159,22 +209,19 @@ function show_flexslider_rotator( $slug )
 				
 				$rtn .= get_the_excerpt();
 				$rtn .= '</div>';
-			
-			endif;
+			}
 	
 			$rtn .= '</div><!-- #slide-' . get_the_ID() . ' -->';
 			$rtn .= '</li>';
-			
-		endwhile;
+		}
 
 		$rtn .= '</ul>';
 		$rtn .= '</div><!-- close: #flexslider_hg_' . $slug . ' -->';
 		$rtn .= '</div><!-- close: #flexslider_hg_' . $slug . '_wrapper -->';
 		
 		
-		// PUSH THE ROTATOR INTO array OF ROTATORS (flexslider_hg_rotators) WE'LL PICK IT UP IN THE FOOTER JS
+		// INIT THE ROTATOR
 		$rtn .= '<script>';
-		
 		$rtn .= " jQuery('#flexslider_hg_{$slug}').flexslider( ";
 			
 		if(isset($rotators[ $slug ]['options']) AND $rotators[ $slug ]['options'] != "") 
@@ -183,17 +230,16 @@ function show_flexslider_rotator( $slug )
 		}
 				
 		$rtn .= " ); ";
-		
-		$rtn .= '</script>';
-		
-	endif;
-	wp_reset_query();	
+		$rtn .= '</script>';		
+	}
+	
+	wp_reset_query();
 	
 	return $rtn;
 }
 
 
-/* ADMIN META BOX */
+// ADMIN META BOX
 function flexslider_hg_create_slide_metaboxes() 
 {
     add_meta_box( 'flexslider_hg_metabox_1', __( 'Slide Settings', 'flexslider-hg' ), 'flexslider_hg_metabox_1', 'slides', 'normal', 'default' );
@@ -229,7 +275,7 @@ function flexslider_hg_metabox_1()
 }
 
 
-/* SAVE THE EXTRA GOODS FROM THE SLIDE */
+// SAVE THE EXTRA GOODS FROM THE SLIDE
 function flexslider_hg_save_meta( $post_id, $post )
 {
 	if ( isset( $_POST['slide_link_url'] ) ) 
@@ -243,7 +289,7 @@ function flexslider_hg_save_meta( $post_id, $post )
 }
 
 
-/* ADMIN COLUMNS */
+// ADMIN COLUMNS
 function flexslider_hg_columns( $columns ) 
 {
 	$columns = array(
@@ -259,7 +305,6 @@ function flexslider_hg_columns( $columns )
 	return $columns;
 }
 
-
 function flexslider_hg_add_columns( $column )
 {
 	global $post;
@@ -272,9 +317,10 @@ function flexslider_hg_add_columns( $column )
 }
 
 
+// SHORTCODE
 function flexslider_hg_shortcode($atts, $content = null)
 {
-	$slug = isset($atts['slug']) ? $atts['slug'] : false;
+	$slug = isset($atts['slug']) ? $atts['slug'] : "attachments";
 	if(!$slug) { return apply_filters( 'flexslider_hg_empty_shortcode', "<p>Flexslider: Please include a 'slug' parameter. [flexslider slug=homepage]</p>" ); }
 	return show_flexslider_rotator( $slug );
 }
