@@ -1,6 +1,6 @@
 === Responsive Slider for Developers ===
 Contributors: halgatewood
-Donate link: http://halgatewood.com/flexslider-hg/
+Donate link: http://halgatewood.com/donate
 Tags: slider, rotator, FlexSlider, slides, features, call to actions, slider shortcode, shortcode
 Requires at least: 3
 Tested up to: 3.6
