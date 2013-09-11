@@ -12,7 +12,7 @@ Add Flexslider Rotators to your themes that are easy to maintain by your clients
 
 == Description ==
 
-=Note: In our next release (Version 1.4) we will be adding the ability to create the rotators in the admin. No PHP skills will be needed. Current version requires some PHP knowledge=
+= Note: In our next release (Version 1.4) we will be adding the ability to create the rotators in the admin. No PHP skills will be needed. Current version requires some PHP knowledge =
 
 Flexslider for Developers creates a new 'slides' custom post type with it's own section in the WordPress admin sidebar. It uses the standard WordPress user interface so your clients will know how to use it instantly. 
 
@@ -45,7 +45,7 @@ To include the rotator in your theme include the 'slug' found from your function
 
 You can also use the new shortcode [flexslider slug=homepage] to include the rotator in certain posts, pages, widgets, etc.
 
-=Gallery of Attachments=
+= Gallery of Attachments =
 New in version 1.3: If you want to display the image attachments for a give post or page simply add the shortcode [flexslider] and it will automatically grab the images. You can click the standard 'Add Media' button above the WordPress Content Editor and then reorder the images to the order you want them to display.
 
 Help development of this plugin on GitHub - https://github.com/halgatewood/flexslider-hg
