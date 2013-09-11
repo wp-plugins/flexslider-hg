@@ -99,6 +99,9 @@ You can also use the new shortcode [flexslider slug=homepage] to include the rot
 
 == Changelog =
 
+= 1.3.1 =
+* Removed enqueing of scripts by has_shortcode for now
+
 = 1.3 =
 * New default attachments rotator
 * If no slug is specified we grab the attachments
