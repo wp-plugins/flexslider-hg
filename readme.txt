@@ -12,9 +12,6 @@ Add Flexslider Rotators to your themes that are easy to maintain by your clients
 
 == Description ==
 
-= Note: In our next release (Version 1.4) we will be adding the ability to create the rotators in the admin. No PHP skills will be needed. Current version requires some PHP knowledge =
-
-
 Flexslider for Developers creates a new 'slides' custom post type with it's own section in the WordPress admin sidebar. It uses the standard WordPress user interface so your clients will know how to use it instantly. 
 
 By default the plugin comes with a 'homepage' and an 'attachment' placeholder. You can add more or overwrite it by adding a function to the functions.php file found in your theme. It is designed this way to keep clients greasy fingers from changing the settings.
