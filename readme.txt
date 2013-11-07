@@ -1,7 +1,7 @@
-=== Responsive Slider for Developers ===
+=== HG Slider ===
 Contributors: halgatewood
 Donate link: http://halgatewood.com/donate
-Tags: slider, rotator, FlexSlider, slides, features, call to actions, slider shortcode, shortcode
+Tags: slider, rotator, FlexSlider, slides, features, call to actions, slider shortcode, shortcode, gallery, attachements
 Requires at least: 3
 Tested up to: 3.6
 Stable tag: trunk
