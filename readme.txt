@@ -12,7 +12,7 @@ A responsive image rotator plugin that easily creates WordPress slideshows. Now 
 
 == Description ==
 
-FlexSlider for Developers creates a new 'slides' custom post type with it's own section in the WordPress admin sidebar. It uses the standard WordPress user interface so your clients will know how to use it instantly. 
+HG Slider creates a new 'slides' custom post type with it's own section in the WordPress admin sidebar. It uses the standard WordPress user interface so your clients will know how to use it instantly. 
 
 By default the plugin comes with a 'homepage' and an 'attachment' placeholder. You can add more or overwrite it by adding a function to the functions.php file found in your theme. It is designed this way to keep clients greasy fingers from changing the settings.
 
@@ -31,7 +31,7 @@ The size of the rotator is set from your WordPress Image Size settings. You can 
 
 `add_image_size( 'homepage-rotator', '550', '250', true );`
 
-= FlexSlider by WooThemes, Rotator Options =
+= FlexSlider Rotator Options =
 For the rotator itself it uses FlexSlider by WooThemes. To setup custom options like making the rotator slide, you can add FlexSlider options. The below example shows how and all the options can be found at http://www.woothemes.com/FlexSlider/
 
 `$rotators['homepage'] = array( 'size' => 'homepage-rotator', 'options' => "{slideshowSpeed: 7000, direction: 'vertical', animation: 'slide'}" );`
