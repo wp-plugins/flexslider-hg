@@ -3,7 +3,7 @@ Contributors: halgatewood
 Donate link: http://halgatewood.com/donate
 Tags: slider, rotator, FlexSlider, slides, features, call to actions, slider shortcode, shortcode, gallery, attachements
 Requires at least: 3
-Tested up to: 3.6
+Tested up to: 3.8
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -95,6 +95,10 @@ You can also use the new shortcode [flexslider slug=homepage] to include the rot
 4. PHP function to create your FlexSlider placeholders.
 
 == Changelog =
+
+= 1.3.2 =
+* Changed menu icon for WordPress 3.8
+* Removed old menu icons
 
 = 1.3.1 =
 * Removed enqueing of scripts by has_shortcode for now
