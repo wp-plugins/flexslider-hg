@@ -2,7 +2,7 @@
 Contributors: halgatewood
 Donate link: http://halgatewood.com/donate
 Tags: slider, rotator, FlexSlider, slides, features, call to actions, slider shortcode, shortcode, gallery, attachements
-Requires at least: 3
+Requires at least: 3.6
 Tested up to: 3.8
 Stable tag: trunk
 License: GPLv2 or later
