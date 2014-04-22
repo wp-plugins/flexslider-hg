@@ -64,7 +64,7 @@ To include the rotator in your theme include the Slider 'slug' and add the follo
 1. List view of the slides, custom columns used for quick viewing and editing
 2. Standard WordPress UI is used including Featured Image support, Post Excerpt and Page Attributes
 3. Included default FlexSlider template included, can be modified with CSS
-4. PHP function to create your FlexSlider placeholders.
+4. New Admin UI to Create Sliders (version 2.0+)
 
 == Changelog =
 
