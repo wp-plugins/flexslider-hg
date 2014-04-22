@@ -1,9 +1,9 @@
 === HG Slider ===
 Contributors: halgatewood
 Donate link: http://halgatewood.com/donate
-Tags: slider, rotator, FlexSlider, slides, features, call to actions, slider shortcode, shortcode, gallery, attachements
+Tags: slider, rotator, gallery, attachments, Flexslider, slides, features, call to actions, slider shortcode, shortcode, rotators, free, simple slider, easy slider, hg slider
 Requires at least: 3.6
-Tested up to: 3.8
+Tested up to: 3.9
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,26 +12,19 @@ A responsive image rotator plugin that easily creates WordPress slideshows. Now 
 
 == Description ==
 
-HG Slider creates a new 'slides' custom post type with it's own section in the WordPress admin sidebar. It uses the standard WordPress user interface so your clients will know how to use it instantly. 
+HG Slider creates a new 'Slides' area in your WordPress admin and allows you to easily setup multiple sliders around your site. It uses the standard WordPress user interface so you (and your clients) will know how to use it instantly. 
 
-By default the plugin comes with a 'homepage' and an 'attachment' placeholder. You can add more or overwrite it by adding a function to the functions.php file found in your theme. It is designed this way to keep clients greasy fingers from changing the settings.
+It has a full interface for creating Sliders and can simply put but anywhere on your site using a simple shortcode.
 
-`function set_flexslider_hg_rotators( $rotators = array() )
-{
-	$rotators['homepage'] 		= array( 'size' => 'homepage-rotator', 'heading_tag' => 'h1' );
-	$rotators['contactus']		= array( 'size' => 'thumbnail', 'orderby' => 'title', 'order' => 'DESC' );
-	$rotators['gallerypage'] 	= array( 'size' => 'medium', 'hide_slide_data' => true );
-	$rotators['amenities'] 		= array( 'size' => 'your-custom-size', 'limit' => 5 );	
-	return $rotators;
-}
-add_filter('flexslider_hg_rotators', 'set_flexslider_hg_rotators');`
-	
+
+== FAQ ==
+
 = Change Image Size =
 The size of the rotator is set from your WordPress Image Size settings. You can set those with the following function (also in your functions.php file).
 
 `add_image_size( 'homepage-rotator', '550', '250', true );`
 
-= FlexSlider Rotator Options =
+= FlexSlider by WooThemes, Rotator Options =
 For the rotator itself it uses FlexSlider by WooThemes. To setup custom options like making the rotator slide, you can add FlexSlider options. The below example shows how and all the options can be found at http://www.woothemes.com/FlexSlider/
 
 `$rotators['homepage'] = array( 'size' => 'homepage-rotator', 'options' => "{slideshowSpeed: 7000, direction: 'vertical', animation: 'slide'}" );`
@@ -56,35 +49,14 @@ Used to be called: Responsive Slider for Developers
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Create placeholders in your templates (show below)
 1. Stylize to your themes design
-1. You and your clients can then upload slides with images, H2 titles and post excerpts. Great for SEO
+1. You and your clients can then upload slides with images, H2 titles and post excerpts. Great for SEO.
 
 
-By default the plugin comes with a 'homepage' placeholder. You can add more or overwrite it by adding a function to the functions.php file found in your theme.
+You can also use the new shortcode [flexslider slug="homepage"] to include the rotator in certain posts, pages, widgets, etc.
 
-`function set_flexslider_hg_rotators( $rotators = array() )
-{
-	$rotators['homepage'] 		= array( 'size' => 'homepage-rotator', 'heading_tag' => 'h1' );
-	$rotators['contactus']		= array( 'size' => 'thumbnail', 'orderby' => 'title', 'order' => 'DESC' );
-	$rotators['gallerypage'] 	= array( 'size' => 'medium', 'hide_slide_data' => true );
-	$rotators['amenities'] 		= array( 'size' => 'your-custom-size', 'limit' => 5 );	
-	return $rotators;
-}
-add_filter('flexslider_hg_rotators', 'set_flexslider_hg_rotators');`
-	
-The size of the rotator is set from your WordPress Image Size settings. You can set those with the following function (also in your functions.php file).
-
-`add_image_size( 'homepage-rotator', '550', '250', true );`
-
-
-Setup the FlexSlider options: see options at http://www.woothemes.com/FlexSlider/
-
-`$rotators['homepage'] = array( 'size' => 'homepage-rotator', 'options' => "{slideshowSpeed: 7000, direction: 'vertical'}" );`
-
-To include the rotator in your theme include the 'slug' found from your function above ($rotators['homepage']) and add the following line to your template:
+To include the rotator in your theme include the Slider 'slug' and add the following line to your template:
 
 `if(function_exists('show_flexslider_rotator')) echo show_flexslider_rotator( 'homepage' );`
-
-You can also use the new shortcode [flexslider slug=homepage] to include the rotator in certain posts, pages, widgets, etc.
 
 
 == Screenshots ==
@@ -96,9 +68,13 @@ You can also use the new shortcode [flexslider slug=homepage] to include the rot
 
 == Changelog =
 
-= 1.3.2 =
-* Changed menu icon for WordPress 3.8
-* Removed old menu icons
+= 2.0 =
+* New interface for creating Sliders with the ability to change all the settings.
+* 3 New Slider Themes
+* Easily add a unique classname to your slider to be able to custom the CSS on a per slider basis
+* Ability to assign a slide to multiple sliders!
+* Bug Fixes and improvements, tested and developed on the latest WordPress
+* Localized
 
 = 1.3.1 =
 * Removed enqueing of scripts by has_shortcode for now
