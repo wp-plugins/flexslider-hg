@@ -14,7 +14,7 @@ A responsive image rotator plugin that easily creates WordPress slideshows. Now 
 
 HG Slider creates a new 'Slides' area in your WordPress admin and allows you to easily setup multiple sliders around your site. It uses the standard WordPress user interface so you (and your clients) will know how to use it instantly. 
 
-It has a full interface for creating Sliders and can simply put but anywhere on your site using a simple shortcode.
+It has a full interface for creating Sliders and can be put anywhere on your site using a simple shortcode.
 
 
 == FAQ ==
