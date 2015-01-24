@@ -3,7 +3,7 @@ Contributors: halgatewood
 Donate link: http://halgatewood.com/donate
 Tags: slider, rotator, gallery, attachments, Flexslider, slides, features, call to actions, slider shortcode, shortcode, rotators, free, simple slider, easy slider, hg slider
 Requires at least: 3.6
-Tested up to: 4.0
+Tested up to: 4.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -27,7 +27,13 @@ The size of the rotator is set from your WordPress Image Size settings. You can 
 = FlexSlider by WooThemes, Rotator Options =
 For the rotator itself it uses FlexSlider by WooThemes. To setup custom options like making the rotator slide, you can add FlexSlider options. The below example shows how and all the options can be found at http://www.woothemes.com/FlexSlider/
 
-`$rotators['homepage'] = array( 'size' => 'homepage-rotator', 'options' => "{slideshowSpeed: 7000, direction: 'vertical', animation: 'slide'}" );`
+` 
+ function hg_flexslider_hg_rotators( $rotators )
+ {
+ 	$rotators['homepage'] = array( 'size' => 'homepage-rotator', 'options' => "{slideshowSpeed: 7000, direction: 'vertical', animation: 'slide'}" );
+ 	return $rotators;
+ }
+ add_filter('flexslider_hg_rotators','hg_flexslider_hg_rotators' );`
 
 = Adding the rotator to your site =
 To include the rotator in your theme include the 'slug' found from your function above ($rotators['homepage']) and add the following line to your template:
