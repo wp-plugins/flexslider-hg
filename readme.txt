@@ -3,7 +3,7 @@ Contributors: halgatewood
 Donate link: https://halgatewood.com/donate
 Tags: slider, rotator, gallery, attachments, flexslider, slides, features, call to actions, slider shortcode, shortcode, rotators, free, simple slider, easy slider, hg slider, hero
 Requires at least: 3.6
-Tested up to: 4.1
+Tested up to: 4.3
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
